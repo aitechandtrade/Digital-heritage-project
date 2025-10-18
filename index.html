@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Heritage: The Barajeel and Forts | Abdullah Shaikh | Grade 10 A</title>
+    <!-- Load Tailwind CSS from CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for new Earth Tone Theme and Inter font --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#3A332C', // Main background (Deep Espresso)
+                        'secondary-dark': '#4F473E', // Card/Section background (Deep Khaki/Slate)
+                        'accent-copper': '#C27C5A', // Terracotta/Copper for highlights
+                        'text-light': '#F5F5DC', // Off-White for readability
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensures smooth scroll behavior when clicking navigation links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom styling for the hero section background effect */
+        .hero-bg {
+            /* Dark overlay on a placeholder image for better text contrast */
+            background-image: linear-gradient(rgba(58, 51, 44, 0.8), rgba(79, 71, 62, 0.8)), url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/58/8f/0c/immerse-yourself-in-ras.jpg?w=900&h=500&s=1'); /* Hero Background Image */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Custom shadow for cards to stand out on dark background */
+        .card-shadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.3);
+        }
+        /* Style for the interactive element */
+        #interactive-panel {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0;
+        }
+        #interactive-panel.active {
+            max-height: 500px; /* Sufficient height for content */
+            opacity: 1;
+            padding-top: 1.5rem;
+        }
+        .rotated {
+            transform: rotate(180deg);
+        }
+
+        /* --- Scroll Animation Styles (Fade In Up) --- */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .scroll-fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* New custom style for better navigation buttons */
+        .nav-btn {
+            @apply px-4 py-2 rounded-full font-medium transition duration-300;
+        }
+        .nav-btn:hover {
+            @apply bg-accent-copper/20 text-accent-copper;
+        }
+    </style>
+</head>
+
+<body class="bg-primary-dark text-text-light font-sans">
+
+    <!-- 1. Navigation Bar (Fixed Top) --><header class="fixed top-0 left-0 right-0 z-50 bg-primary-dark shadow-2xl">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <!-- Navigation Grid Container --><div class="flex justify-between items-center">
+                <!-- Left Side: Logo/Title --><a href="#hero" class="text-2xl font-bold text-accent-copper hover:text-text-light transition duration-300">
+                    🏗️ UAE Architecture
+                </a>
+
+                <!-- Center: School Name/Grade --><span class="hidden md:flex items-center text-xs text-gray-400 font-medium tracking-wider">
+                    Al Murooj Scientific Private School | Grade 10 A
+                </span>
+
+                <!-- Right Side: Navigation Links --><div class="hidden md:flex space-x-2">
+                    <a href="#intro" class="nav-btn text-text-light">Passive Cooling</a>
+                    <a href="#materials" class="nav-btn text-text-light">Materials</a>
+                    <a href="#barajeel" class="nav-btn text-text-light">The Barajeel</a>
+                    <a href="#legacy" class="nav-btn text-text-light">Legacy</a>
+                </div>
+
+                <!-- Mobile Menu Button (Hamburger) --><button id="mobile-menu-btn" class="md:hidden text-accent-copper focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu Dropdown --><div id="mobile-menu" class="hidden md:hidden bg-secondary-dark/95 pb-4">
+            <a href="#intro" class="block px-6 py-3 text-text-light hover:bg-primary-dark/50 transition duration-300 border-b border-primary-dark/50">Passive Cooling</a>
+            <a href="#materials" class="block px-6 py-3 text-text-light hover:bg-primary-dark/50 transition duration-300 border-b border-primary-dark/50">Materials</a>
+            <a href="#barajeel" class="block px-6 py-3 text-text-light hover:bg-primary-dark/50 transition duration-300 border-b border-primary-dark/50">The Barajeel</a>
+            <a href="#legacy" class="block px-6 py-3 text-text-light hover:bg-primary-dark/50 transition duration-300 border-b border-primary-dark/50">Legacy</a>
+        </div>
+    </header>
+
+    <main class="mt-[90px] md:mt-[70px]">
+        <!-- 2. Hero Section - No animation on hero content --><section id="hero" class="hero-bg h-screen flex items-center justify-center">
+            <div class="text-center p-8 md:p-16 rounded-xl backdrop-blur-sm bg-primary-dark/80 max-w-4xl mx-auto card-shadow border border-accent-copper/50">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-text-light mb-4 leading-tight">
+                    The Smart Architecture of the UAE
+                </h1>
+                <p class="text-xl md:text-2xl text-accent-copper font-medium mb-8">
+                    Exploring the ingenious climate-adaptive design of traditional homes and forts.
+                </p>
+                <p class="text-md text-gray-300 mb-6 font-mono">
+                    Digital Heritage Project by **Abdullah Imtiaz Ali Shaikh**
+                </p>
+                <a href="#intro" class="inline-block px-8 py-3 text-lg font-semibold text-primary-dark bg-accent-copper rounded-full hover:bg-orange-400 transition duration-300 transform hover:scale-105">
+                    Discover Passive Cooling
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. Introduction & Significance (Passive Cooling) --><section id="intro" class="py-16 md:py-24 bg-secondary-dark">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <!-- SCROLL ANIMATION CLASS ADDED --><h2 class="text-4xl font-extrabold text-center text-accent-copper mb-10 border-b-4 border-accent-copper pb-2 inline-block mx-auto scroll-fade-in">
+                    Built for the Climate: Passive Cooling
+                </h2>
+                <!-- SCROLL ANIMATION CLASS ADDED --><div class="grid md:grid-cols-2 gap-12 items-center scroll-fade-in">
+                    <div>
+                        <p class="text-lg leading-relaxed mb-6 text-text-light">
+                            Traditional UAE architecture was a direct response to the intense desert heat and humidity. Unlike modern buildings that rely on electricity, heritage homes and forts utilized **passive cooling** techniques—methods that cool a structure without active energy consumption.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-6 text-text-light">
+                            Key features like thick walls, small windows, central courtyards, and the famous **Barajeel** (wind towers) worked together to create comfortable microclimates indoors. This design philosophy emphasizes sustainability and local resourcefulness.
+                        </p>
+                        <div class="p-6 bg-primary-dark rounded-xl border-l-4 border-accent-copper card-shadow">
+                            <p class="font-bold text-lg text-accent-copper">Architectural Goal</p>
+                            <p class="text-sm text-gray-400">The primary function was to reduce solar heat gain and increase internal air movement, often dropping indoor temperatures by $10-15^\circ \text{C}$ compared to the scorching exterior.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden card-shadow">
+                        <!-- UPDATED IMAGE LINK --><img src="https://www.researchgate.net/publication/369990173/figure/fig3/AS:11431281145297294@1681406832633/Figure-5-Wind-Towers-Al-Barajeel.jpg" alt="Diagram of Wind Tower (Barajeel) Function" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Historical Materials and Construction --><section id="materials" class="py-16 md:py-24 bg-primary-dark">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <!-- SCROLL ANIMATION CLASS ADDED --><h2 class="text-4xl font-extrabold text-center text-accent-copper mb-12 border-b-4 border-text-light pb-2 inline-block mx-auto scroll-fade-in">
+                    The Foundation: Local Materials
+                </h2>
+                <!-- SCROLL ANIMATION CLASS ADDED to the container, and slight delay added to children --><div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-secondary-dark p-6 rounded-xl card-shadow border-t-2 border-accent-copper scroll-fade-in" style="transition-delay: 0.1s;">
+                        <h3 class="text-2xl font-bold mb-3 text-text-light">Coral Stone</h3>
+                        <p class="text-gray-300">Harvested from the seabed, this porous material was the main building block in coastal towns like Dubai and Abu Dhabi. Its porous nature helped insulate the interiors.</p>
+                    </div>
+                    <div class="bg-secondary-dark p-6 rounded-xl card-shadow border-t-2 border-accent-copper scroll-fade-in" style="transition-delay: 0.3s;">
+                        <h3 class="text-2xl font-bold mb-3 text-text-light">Sarooj (Gypsum Plaster)</h3>
+                        <p class="text-gray-300">A strong, durable plaster made from local lime and gypsum mixed with water. It was used to coat the walls, protecting them from the elements and giving a smooth finish.</p>
+                    </div>
+                    <div class="bg-secondary-dark p-6 rounded-xl card-shadow border-t-2 border-accent-copper scroll-fade-in" style="transition-delay: 0.5s;">
+                        <h3 class="text-2xl font-bold mb-3 text-text-light">Palm Fronds (Barasti)</h3>
+                        <p class="text-gray-300">The versatile fronds of the date palm were used for roofing and temporary structures. They provided excellent shade while allowing cooling breezes to pass through.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Interactive Section: How the Barajeel Works --><section id="barajeel" class="py-16 md:py-24 bg-secondary-dark">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <!-- SCROLL ANIMATION CLASS ADDED --><h2 class="text-4xl font-extrabold text-center text-accent-copper mb-12 border-b-4 border-gray-400 pb-2 inline-block mx-auto scroll-fade-in">
+                    The Barajeel: An Ancient Air Conditioner
+                </h2>
+                <!-- SCROLL ANIMATION CLASS ADDED --><div class="bg-primary-dark p-8 rounded-xl card-shadow text-center border-2 border-accent-copper/70 scroll-fade-in">
+                    <h3 class="text-3xl font-bold mb-4 text-accent-copper">Unlocking the Wind Tower's Secret</h3>
+                    <p class="text-lg mb-6 text-text-light">
+                        The Barajeel is an aerodynamic marvel. It is a tall, chimney-like structure with openings on four sides that directs air down into the home. Click below to reveal the two simultaneous principles of physics that make the Barajeel function.
+                    </p>
+
+                    <button id="fact-toggle-btn" class="px-6 py-2 bg-accent-copper text-primary-dark font-bold rounded-full hover:bg-orange-400 transform hover:scale-105 transition duration-300 flex items-center justify-center mx-auto">
+                        Reveal the Physics
+                        <svg id="toggle-icon" class="w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <!-- Answer Display (Hidden initially) --><div id="interactive-panel" class="mt-6 text-left">
+                        <ul class="space-y-4 text-lg list-none pl-0">
+                            <li class="p-3 bg-secondary-dark rounded-lg border-l-4 border-text-light/50 text-text-light">
+                                **1. Capture/Draft Effect:** The tower captures high-altitude breezes and directs cool air down to the rooms below. Regardless of wind direction, at least one side catches the moving air.
+                            </li>
+                            <li class="p-3 bg-secondary-dark rounded-lg border-l-4 border-text-light/50 text-text-light">
+                                **2. Evaporative Cooling:** The downward-moving air often passes over a moist floor or fountain in the courtyard. The evaporation of water naturally cools the air, creating a chiller effect before it circulates into the living spaces.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Preservation Efforts and Modern Legacy --><section id="legacy" class="py-16 md:py-24 bg-primary-dark">
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <!-- SCROLL ANIMATION CLASS ADDED --><h2 class="text-4xl font-extrabold text-center text-accent-copper mb-12 border-b-4 border-text-light pb-2 inline-block mx-auto scroll-fade-in">
+                    The Legacy: Sustainability and Modern Design
+                </h2>
+                <!-- SCROLL ANIMATION CLASS ADDED --><div class="grid md:grid-cols-2 gap-12 items-center scroll-fade-in">
+                    <div class="rounded-xl overflow-hidden card-shadow order-2 md:order-1">
+                        <!-- UPDATED IMAGE LINK --><img src="https://rqitects.com/wp-content/uploads/2024/10/Sustainable_Architecture_Trends_in_Dubai_3.jpg" alt="Modern UAE building incorporating traditional design elements" class="w-full h-auto object-cover">
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h3 class="2xl font-semibold mb-4 text-text-light">Restoring the Past</h3>
+                        <p class="text-lg leading-relaxed mb-6 text-text-light">
+                            Major restoration efforts, particularly in areas like the **Al Fahidi Historical Neighborhood** in Dubai and various heritage forts across the Emirates, ensure these structures are preserved as living history museums and active cultural hubs.
+                        </p>
+                        <h3 class="2xl font-semibold mb-4 text-text-light">Inspiration for the Future</h3>
+                        <p class="text-lg leading-relaxed mb-6 text-text-light">
+                            Today's sustainable architects in the UAE draw heavily on the principles of the Barajeel, integrating natural ventilation and light wells into cutting-edge projects to reduce carbon footprint and energy consumption, marrying tradition with modernity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. Footer & Credits --><footer class="bg-secondary-dark py-8 border-t border-accent-copper/50">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <p class="text-sm font-semibold text-accent-copper mb-2">
+                Digital Heritage Project: Climate-Adaptive UAE Architecture
+            </p>
+            <p class="text-sm text-gray-400 mb-4">
+                Created by **Abdullah Imtiaz Ali Shaikh** | Grade 10 A | Al Murooj Scientific Private School
+            </p>
+
+            <div class="mt-4 pt-4 border-t border-primary-dark">
+                <p class="text-xs text-gray-500">
+                    <span class="font-bold">Note:</span> All images are placeholders for demonstration. A complete project would use authentic, high-resolution photography.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity and Scroll Animations --><script>
+        // Get references to elements
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const factToggleBtn = document.getElementById('fact-toggle-btn');
+        const interactivePanel = document.getElementById('interactive-panel');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        // --- 1. Mobile Menu Toggle ---
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- 2. Interactive Panel Toggle (Barajeel Physics) ---
+        factToggleBtn.addEventListener('click', () => {
+            const isActive = interactivePanel.classList.toggle('active');
+
+            if (isActive) {
+                // Change button appearance to indicate open state
+                factToggleBtn.textContent = 'Hide Physics Principles';
+                factToggleBtn.classList.remove('bg-accent-copper');
+                factToggleBtn.classList.add('bg-gray-400', 'text-secondary-dark');
+                toggleIcon.classList.add('rotated');
+            } else {
+                // Change button appearance to indicate closed state
+                factToggleBtn.textContent = 'Reveal the Physics';
+                factToggleBtn.classList.add('bg-accent-copper');
+                factToggleBtn.classList.remove('bg-gray-400', 'text-secondary-dark');
+                toggleIcon.classList.remove('rotated');
+            }
+        });
+
+        // --- 3. Scroll Animation Logic (Intersection Observer) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Select all elements to be animated
+            const observerElements = document.querySelectorAll('.scroll-fade-in');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the item must be visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is visible, add the class to trigger the animation
+                        entry.target.classList.add('is-visible');
+                        // Stop observing once it's visible to run the animation only once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe each element
+            observerElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
